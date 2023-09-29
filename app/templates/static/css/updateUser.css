@@ -1,0 +1,97 @@
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  box-sizing: border-box;
+  font-family: "Mooli", sans-serif;
+}
+body h1, body h2, body h3, body p {
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  color: #000000;
+  text-decoration: none;
+}
+
+form input:not(input[type=checkbox], input[type=submit]) {
+  height: 40px;
+}
+form textarea {
+  height: 120px;
+  resize: none;
+}
+form input:not(input[type=checkbox], input[type=submit]), form textarea {
+  width: 100%;
+  margin-bottom: 10px;
+  border: solid 2px #a4a4a4;
+  border-radius: 7px;
+  outline: none;
+  transition: all 0.5s;
+  font-family: "Mooli", sans-serif;
+}
+form input:not(input[type=checkbox], input[type=submit]):focus, form textarea:focus {
+  border-color: #215a36;
+}
+form input[type=checkbox] {
+  width: 10pt;
+  height: 10pt;
+}
+
+.title {
+  font-size: 30pt;
+  color: #215a36;
+  margin-bottom: 20px;
+}
+
+.text {
+  font-size: 10pt;
+  color: #000000;
+}
+
+.button {
+  background-color: #215a36;
+  width: 100%;
+  height: 45px;
+  cursor: pointer;
+  margin-bottom: 0px;
+  border: solid 2px #FFFFFF;
+  border-radius: 15px;
+  color: #FFFFFF;
+  transition: all 0.5s;
+}
+.button:hover {
+  background-color: #FFFFFF;
+  border: solid 2px #215a36;
+  color: #000000;
+}
+
+#edit {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#edit .content {
+  width: 40%;
+}
+#edit .content .header {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 40px;
+  margin-bottom: 20px;
+}
+#edit .content .header .title {
+  margin-bottom: 0px;
+}
+#edit .content .header span:hover {
+  color: #000000;
+}
+#edit .content .header h1 {
+  margin-left: 40px;
+}
+
+/*# sourceMappingURL=updateUser.css.map */

@@ -1,0 +1,41 @@
+{% load static %}
+<html>
+    <head>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+        <link href="https://fonts.googleapis.com/css2?family=Mooli&display=swap" rel="stylesheet">
+        <link href="{% static 'css/users.css' %}" rel="stylesheet">
+
+        <title>Usuários</title>
+    </head>
+
+    <body>
+        <div id="listUsers">
+            <div class="header">
+                <a href="dashboard"><span class="material-symbols-outlined title">keyboard_return</span></a>
+                <h1 class="title">Lista de Usuários</h1>
+            </div>
+
+            <div class="content">
+                {% if users %}
+                    {% for user in users %}
+                        <div class="itens">
+                            <span class="material-symbols-outlined">person</span>
+                            {% if user.is_staff %}
+                                <p>Admin</p>
+                            {% else %}
+                                <p>Padrão</p>
+                            {% endif %}
+                            <p>{{ user.username }}</p>
+                            <div class="buttons">
+                                <a href="users/updateUser?{{ user.username }}"><button><span class="material-symbols-outlined edit">edit</span></button></a>
+                                <a href="users/deleteUser?{{ user.username }}"><button><span class="material-symbols-outlined delete">delete_forever</span></button></a>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <p class="text">Volte para o Dashboard e adicione novos usuários!</p>
+                {% endif %}
+            </div>
+        </div>
+    </body>
+</html>

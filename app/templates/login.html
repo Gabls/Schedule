@@ -1,0 +1,41 @@
+{% load static %}
+<html>
+    <head>
+        <link href="https://fonts.googleapis.com/css2?family=Mooli&display=swap" rel="stylesheet">
+        <link href="{% static 'css/login.css' %}" rel="stylesheet">
+        <title>Login</title>
+    </head>
+
+    <body>
+        <div class="content login">
+            <div class="logo">
+                <img src="{% static 'img/Logo (CAAF).png' %}" alt="logo do Centro de Antropologia e Arqueologia Forense (CAAF).">
+            </div>
+
+            <div class="forms">
+                <div class="header">
+                    <h1 class="title">Bem-vindo(a)(e)!</h1>
+                    <p class="text">Faça o login para visualizar seus compromissos</p>
+                </div>
+
+                <form action="{% url 'login' %}" method="POST">{% csrf_token %}
+                    <label class="text">E-mail</label>
+                    <input type="text" name="email" required>
+                    <br><br>
+                    <label class="text">Senha</label>
+                    <input type="password" name="password" required>
+                    {% if error_login %}
+                        <p class="error_login">E-mail ou senha incorreta. Tente novamente!</p>
+                    {% endif %}
+                    <br><br>
+                    <input type="submit" value="Entrar" class="button">
+                </form>
+            </div>
+        </div>
+
+        <div class="content image">
+            <div class="background"></div>
+            <img src="{% static 'img/Pessoa.jpg' %}" alt="Imagem de uma pessoa com as mãos no rosto coberta de tintas coloridas.">
+        </div>
+    </body>
+</html>

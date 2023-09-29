@@ -1,0 +1,217 @@
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  box-sizing: border-box;
+  font-family: "Mooli", sans-serif;
+}
+body h1, body h2, body h3, body p {
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  color: #000000;
+  text-decoration: none;
+}
+
+form input:not(input[type=checkbox], input[type=submit]) {
+  height: 40px;
+}
+form textarea {
+  height: 120px;
+  resize: none;
+}
+form input:not(input[type=checkbox], input[type=submit]), form textarea {
+  width: 100%;
+  margin-bottom: 10px;
+  border: solid 2px #a4a4a4;
+  border-radius: 7px;
+  outline: none;
+  transition: all 0.5s;
+  font-family: "Mooli", sans-serif;
+}
+form input:not(input[type=checkbox], input[type=submit]):focus, form textarea:focus {
+  border-color: #215a36;
+}
+form input[type=checkbox] {
+  width: 10pt;
+  height: 10pt;
+}
+
+.title {
+  font-size: 30pt;
+  color: #215a36;
+  margin-bottom: 20px;
+}
+
+.text {
+  font-size: 10pt;
+  color: #000000;
+}
+
+.button {
+  background-color: #215a36;
+  width: 100%;
+  height: 45px;
+  cursor: pointer;
+  margin-bottom: 0px;
+  border: solid 2px #FFFFFF;
+  border-radius: 15px;
+  color: #FFFFFF;
+  transition: all 0.5s;
+}
+.button:hover {
+  background-color: #FFFFFF;
+  border: solid 2px #215a36;
+  color: #000000;
+}
+
+.model {
+  width: 100vw;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2;
+}
+.model .content {
+  background-color: #FFFFFF;
+  width: 30%;
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+  border-radius: 15px;
+  padding: 20px;
+  z-index: 3;
+}
+
+.background {
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  cursor: pointer;
+  z-index: 2;
+}
+
+#taskbar {
+  background-color: #215a36;
+  width: 200px;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+  z-index: 1;
+}
+#taskbar .header {
+  padding: 20px;
+  color: #FFFFFF;
+  text-align: center;
+}
+#taskbar .header h1 {
+  margin-bottom: 10px;
+  font-size: 34pt;
+}
+#taskbar .header p {
+  font-size: 10pt;
+}
+#taskbar .itens {
+  width: 100%;
+  height: 60px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #FFFFFF;
+  transition: all 0.5s;
+}
+#taskbar .itens span {
+  margin-right: 10px;
+}
+#taskbar .itens:hover {
+  background-color: #FFFFFF;
+  color: #215a36;
+}
+
+#alert {
+  align-items: start;
+  margin-top: 40px;
+}
+
+#addUser .content {
+  width: 25%;
+}
+
+#schedule {
+  width: 75%;
+  height: calc(100% - 40px);
+  position: absolute;
+  top: 40px;
+  left: calc(12.5% + 100px);
+  box-sizing: border-box;
+}
+#schedule .welcome {
+  margin-bottom: 20px;
+  display: flex;
+}
+#schedule .welcome .button {
+  width: 200px;
+  margin-left: auto;
+}
+#schedule .week {
+  width: 100%;
+  height: 30px;
+  display: flex;
+  margin-bottom: 10px;
+  color: #a4a4a4;
+}
+#schedule .week .days {
+  width: 14.2857142857%;
+  display: flex;
+  align-items: end;
+  justify-content: left;
+}
+#schedule .content {
+  height: calc(100% - 140px);
+  display: flex;
+  flex-direction: row;
+}
+#schedule .content .days {
+  width: 14.2857142857%;
+  box-shadow: 0 1px 1px #f6f6f6, 0 2px 2px #f6f6f6;
+}
+#schedule .content .days span {
+  width: 0px;
+  height: 0px;
+  position: relative;
+  left: calc(100% - 30px);
+  cursor: pointer;
+  transition: all 0.3s;
+}
+#schedule .content .days span:hover {
+  color: #e65a5a;
+}
+#schedule .content .days .item {
+  background-color: #f6f6f6;
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-bottom: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+#schedule .content .days .item:hover {
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+#schedule .content .days .item p {
+  color: #000000;
+}
+
+/*# sourceMappingURL=dashboard.css.map */

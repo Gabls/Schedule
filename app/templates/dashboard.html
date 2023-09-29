@@ -1,0 +1,154 @@
+{% load static %}
+<html>
+    <head>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+        <link href="https://fonts.googleapis.com/css2?family=Mooli&display=swap" rel="stylesheet">
+        <link href="{% static 'css/dashboard.css' %}" rel="stylesheet">
+        
+        <script src="{% static 'js/jquery.js' %}"></script>
+        <script src="{% static 'js/dashboard.js' %}"></script>
+
+        <title>Dashboard</title>
+    </head>
+
+    <body>
+        <div id="taskbar">
+            <div class="header">
+                <h1>CAAF</h1>
+                <p>Controle de Eventos</p>
+            </div>
+
+            {% if user.is_staff %}
+            <div class="itens" id="btnAddUser">
+                <span class="material-symbols-outlined">person_add</span>
+                <p>Adicionar Usuário</p>
+            </div>
+
+            <a href="users">
+                <div class="itens">
+                    <span class="material-symbols-outlined">manage_accounts</span>
+                    <p>Editar Usuários</p>
+                </div>
+            </a>
+            {% endif %}
+
+            <a href="logout">
+                <div class="itens">
+                    <span class="material-symbols-outlined">logout</span>
+                    <p>Logout</p>
+                </div>
+            </a>
+        </div>
+
+        {% if erro or success %}
+            <div id="alert" class="model">
+                <div class="background"></div>
+                <div class="content">
+                    {% if erro %}
+                        <h1 class="title">Erro</h1>
+                        <p>{{ erro }}</p>
+                    {% endif %}
+
+                    {% if success %}
+                        <h1 class="title">Sucesso</h1>
+                        <p>{{ success }}</p>
+                    {% endif %}
+                    
+                </div>
+            </div>
+        {% endif %}
+
+        <div id="addUser" class="model">
+            <div class="background"></div>
+    
+            <div class="content">
+                <h1 class="title">Novo Usuário</h1>
+    
+                <form action="{% url 'dashboard' %}" method="POST">{% csrf_token %}
+                    <label class="text">Nome</label>
+                    <input type="text" name="first_name" maxlength="100" required>
+                    <br><br>
+                    <label class="text">E-mail</label>
+                    <input type="email" name="email" maxlength="100" required>
+                    <br><br>
+                    <label class="text">Senha</label>
+                    <input type="password" name="password" maxlength="100" required>
+                    <br><br>
+                    <input type="checkbox" name="is_staff" value="True">
+                    <label class="text">é Administrador?</label>
+                    <br><br>
+                    <input type="submit" value="Criar" class="button">
+                </form>
+            </div>
+        </div>
+
+        <div id="addEvent" class="model">
+            <div class="background"></div>
+            
+            <div class="content">
+                <h1 class="title">Novo Evento</h1>
+                <form action="{% url 'dashboard' %}" method="POST">{% csrf_token %}
+                    <label class="text">Título</label>
+                    <input type="text" name="title" maxlength="100" required>
+                    <br><br>
+                    <label class="text">Dia e Hora</label>
+                    <input type="datetime-local" name="fullDate" required>
+                    <br><br>
+                    <label class="text">Descrição</label>
+                    <textarea maxlength="400" name="description"></textarea>
+                    <br><br>
+                    <input type="submit" value="Criar" class="button">
+                </form>
+            </div>
+        </div>
+
+        <div id="enterEvent" class="model">
+            <div class="background"></div>
+            
+            <div class="content">
+                <h1 class="title">Evento Existente</h1>
+                <form action="{% url 'dashboard' %}" method="POST">{% csrf_token %}
+                    <label class="text">Código</label>
+                    <input type="text" name="link" maxlength="100" required>
+                    <br><br>
+                    <input type="submit" value="Entrar" class="button">
+                </form>
+            </div>
+        </div>
+
+        <div id="schedule">
+            <div class="welcome">
+                <h1>Bem-Vindo(a)(e) {{ user.first_name }}</h1>
+                <button id="btnAddEvent" class="button">Criar Novo Evento</button>
+                <button id="btnEnterEvent" class="button">Entrar em um Evento</button>
+            </div>
+
+            <div class="week">
+                {% for day in scheduleDates %}
+                    <div class="days">
+                        <p>{{ day.day_of_week }} - {{ day.day }}</p>
+                    </div>
+                {% endfor %}
+            </div>
+
+            <div class="content">
+                {% for day in scheduleEvents %}
+                    <div class="days">
+                        {% for event in day %}
+                            {% if event.event.creator_id != user.id %}
+                                <a href="exitEvent?{{ event.event.id }}"><span class="material-symbols-outlined">close</span></a>
+                            {% endif %}
+
+                            <a href="updateEvent?{{ event.event.id }}">
+                                <div class="item">
+                                    <p>{{ event.event.full_date|date:'H:i' }}</p>
+                                    <p>{{ event.event.title }}</p>
+                                </div>
+                            </a>
+                        {% endfor %}
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </body>
+</html>

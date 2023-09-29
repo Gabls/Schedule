@@ -1,0 +1,37 @@
+{% load static %}
+<html>
+    <head>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+        <link href="https://fonts.googleapis.com/css2?family=Mooli&display=swap" rel="stylesheet">
+        <link href="{% static 'css/updateEvent.css' %}" rel="stylesheet">
+
+        <title>Usuários</title>
+    </head>
+
+    <body>
+        <div id="edit" class="model">
+            <div class="content">
+                <div class="header">
+                    <a href="dashboard"><span class="material-symbols-outlined title">keyboard_return</span></a>
+                    <h1 class="title">Evento - Código: {{ event.id }}</h1>
+                </div>
+    
+                <form action="{% url 'updateEvent' %}?{{ event.id }}" method="POST">{% csrf_token %}
+                    <label class="text">Título</label>
+                    <input type="text" name="title" maxlength="100" value="{{ event.title }}" required>
+                    <br><br>
+                    <label class="text">Dia e Hora</label>
+                    <input type="datetime-local" name="full_date" value="{{ event.full_date|date:'Y-m-d\TH:i' }}" required>
+                    <br><br>
+                    <label class="text">Descrição</label>
+                    <textarea maxlength="400" name="description">{{ event.description }}</textarea>
+                    <br><br>
+                    <div class="buttons">
+                        <input type="submit" value="Atualizar" class="button">
+                        <a href="deleteEvent?{{ event.id }}" class="delete"><span class="material-symbols-outlined">delete_forever</span></a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </body>
+</html>
